@@ -15,12 +15,19 @@ async function run() {
         await client.connect();
         const database = client.db('ShowPlaces');
         const placesCollection = database.collection('places');
+        const servicesCollection = database.collection('services');
+        const reviewsCollection = database.collection('reviews');
         // get api
 
         app.get('/places', async (req, res) => {
             const cursor = placesCollection.find({});
             const places = await cursor.toArray();
             res.send(places);
+        })
+        app.get('/services', async (req, res) => {
+            const cursor = servicesCollection.find({});
+            const services = await cursor.toArray();
+            res.send(services);
         })
 
         //post api
