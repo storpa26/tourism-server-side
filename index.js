@@ -1,4 +1,5 @@
 const express = require('express')
+var cors = require('cors')
 const app = express()
 const port = process.env.PORT || 5000
 require('dotenv').config()
@@ -39,7 +40,7 @@ async function run() {
 }
 run().catch(console.dir);
 
-
+app.use(cors())
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
