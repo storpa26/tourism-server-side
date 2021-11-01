@@ -16,7 +16,7 @@ async function run() {
         const database = client.db('ShowPlaces');
         const placesCollection = database.collection('places');
         const servicesCollection = database.collection('services');
-        const reviewsCollection = database.collection('reviews');
+        const reviewsCollection = database.collection('orders');
         // get api
 
         app.get('/places', async (req, res) => {
@@ -39,6 +39,12 @@ async function run() {
         })
 
         //post api
+
+        app.post('/orders', async (req, res) => {
+            console.log('hit the order');
+            res.send('post hiteed');
+        })
+
         // app.post('/places', async (req, res) => {
         //     const doc = {
         //         title: "Record of a Shriveled Datu",
