@@ -37,6 +37,11 @@ async function run() {
             const service = await servicesCollection.findOne(query);
             res.json(service);
         })
+        app.get('/orders', async (req, res) => {
+            const cursor = ordersCollection.find({});
+            const orders = await cursor.toArray();
+            res.send(orders);
+        })
 
         //post api
 
