@@ -45,6 +45,11 @@ async function run() {
             const result = await ordersCollection.insertOne(order)
             res.json(result);
         })
+        app.post('/services', async (req, res) => {
+            const service = req.body
+            const result = await servicesCollection.insertOne(service)
+            res.json(result);
+        })
 
         // app.post('/places', async (req, res) => {
         //     const doc = {
