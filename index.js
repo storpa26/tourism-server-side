@@ -37,11 +37,7 @@ async function run() {
             const service = await servicesCollection.findOne(query);
             res.json(service);
         })
-        app.get('/orders', async (req, res) => {
-            const cursor = ordersCollection.find({});
-            const orders = await cursor.toArray();
-            res.send(orders);
-        })
+
 
         //post api
 
@@ -49,6 +45,11 @@ async function run() {
             const order = req.body
             const result = await ordersCollection.insertOne(order)
             res.json(result);
+        })
+        app.get('/orders', async (req, res) => {
+            const cursor = ordersCollection.find({});
+            const result = await cursor.toArray();
+            res.send(result);
         })
         app.post('/services', async (req, res) => {
             const service = req.body
