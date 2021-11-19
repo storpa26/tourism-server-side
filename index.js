@@ -57,14 +57,23 @@ async function run() {
             res.json(result);
         })
 
-        // app.post('/places', async (req, res) => {
-        //     const doc = {
-        //         title: "Record of a Shriveled Datu",
-        //         content: "No bytes, no problem. Just insert a document, in MongoDB",
-        //     }
-        //     const result = await placesCollection.insertOne(doc);
-        //     console.log(`A document was inserted with the _id: ${result.insertedId}`);
-        // })
+        //get orders by email
+        app.get('/filteredorders', async (req, res) => {
+            const email = req.query.email;
+            const query = { email: email }
+            const cursor = ordersCollection.find(query);
+            const userOrder = await cursor.toArray();
+            res.json(userOrder);
+        })
+
+        //delete an order 
+        app.delete('/orders/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await ordersCollection.deleteOne(query);
+            res.send(result)
+        })
+
 
     }
     finally {
