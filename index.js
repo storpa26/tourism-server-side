@@ -17,6 +17,7 @@ async function run() {
         const placesCollection = database.collection('places');
         const servicesCollection = database.collection('services');
         const ordersCollection = database.collection('orders');
+        const reviewsCollection = database.collection('reviews');
         // get api
 
         app.get('/places', async (req, res) => {
@@ -74,6 +75,12 @@ async function run() {
             res.send(result)
         })
 
+        //get reviews
+        app.get('/reviews', async (req, res) => {
+            const cursor = reviewsCollection.find({});
+            const review = await cursor.toArray();
+            res.send(review);
+        })
 
     }
     finally {
